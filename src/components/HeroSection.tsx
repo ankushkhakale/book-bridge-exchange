@@ -1,7 +1,15 @@
-
+import React, { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Search, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+// 3D Book Model Component
+function BookModel(props: any) {
+  const { scene } = useGLTF('/book-model.gltf');
+  return <primitive object={scene} {...props} />;
+}
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -16,7 +24,7 @@ const HeroSection = () => {
     <div className="relative overflow-hidden bg-gradient-to-r from-bookbridge-purple/10 to-bookbridge-blue/5 py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 md:space-y-8">
+          <div className="space-y-6 md:space-y-8 animate-fade-in">
             <div>
               <h4 className="text-bookbridge-darkpurple font-medium mb-2">For College Students Across India</h4>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display leading-tight">
@@ -64,28 +72,27 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className="relative h-80 md:h-auto">
-            <div className="absolute top-4 left-4 right-4 bottom-4 bg-bookbridge-purple/20 rounded-lg transform rotate-3"></div>
-            <div className="absolute top-0 left-0 right-0 bottom-0 bg-white shadow-lg rounded-lg transform -rotate-3 overflow-hidden">
-              <div className="h-full flex items-center justify-center bg-gradient-to-br from-white to-gray-100 p-8">
-                <div className="relative max-w-md mx-auto w-full">
-                  <div className="grid grid-cols-3 gap-4">
-                    {placeholderImages.map((image, index) => (
-                      <div 
-                        key={index} 
-                        className="perspective-book transform hover:scale-105 transition-transform duration-300 ease-in-out"
-                      >
-                        <img 
-                          src={image} 
-                          alt={`Book placeholder ${index + 1}`} 
-                          className="w-full h-48 object-cover rounded-lg shadow-md"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* 3D Book Model Section */}
+          <div className="relative h-96 md:h-[500px] w-full">
+            <Canvas 
+              camera={{ position: [0, 0, 5], fov: 45 }}
+              className="absolute top-0 left-0 w-full h-full"
+            >
+              <Suspense fallback={null}>
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[10, 10, 10]} intensity={1} />
+                <BookModel 
+                  position={[0, -1, 0]} 
+                  rotation={[0.5, -0.3, 0]} 
+                  scale={[1.5, 1.5, 1.5]} 
+                />
+                <OrbitControls 
+                  autoRotate 
+                  autoRotateSpeed={2} 
+                  enableZoom={false} 
+                />
+              </Suspense>
+            </Canvas>
           </div>
         </div>
       </div>
@@ -111,4 +118,3 @@ const StatsCard = ({ number, text }: { number: string; text: string }) => (
 );
 
 export default HeroSection;
-

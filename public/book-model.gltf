@@ -1,0 +1,33 @@
+
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "Lovable AI"
+  },
+  "scenes": [
+    {
+      "nodes": [
+        {
+          "mesh": 0,
+          "name": "Book"
+        }
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "mode": 4,
+          "material": 0
+        }
+      ]
+    }
+  ]
+}
