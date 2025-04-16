@@ -11,6 +11,7 @@ import SellBooks from "./pages/SellBooks";
 import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
 import NotFound from "./pages/NotFound";
+import BookDetail from "./pages/BookDetail";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/sell-books" element={<SellBooks />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/book/:bookId" element={<BookDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
