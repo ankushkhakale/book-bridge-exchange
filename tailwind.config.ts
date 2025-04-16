@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				display: ['Playfair Display', 'serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -25,8 +29,17 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
+					DEFAULT: '#9b87f5',
+					light: '#b3a4f7',
+					dark: '#7E69AB',
 					foreground: 'hsl(var(--primary-foreground))'
+				},
+				bookbridge: {
+					purple: '#9b87f5',
+					darkpurple: '#7E69AB',
+					blue: '#1EAEDB',
+					orange: '#FEC6A1',
+					green: '#F2FCE2',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
